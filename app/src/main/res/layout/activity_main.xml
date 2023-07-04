@@ -31,14 +31,6 @@
             android:hint="Enter city name"
             android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/countryEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Enter country code (optional)"
-            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/getBtn"
@@ -47,7 +39,7 @@
             android:layout_marginBottom="10dp"
             android:backgroundTint="@null"
             android:onClick="getWeatherDetails"
-            android:text="Get"
+            android:text="Get Weather"
             android:textColor="@color/darkblue" />
 
         <ScrollView
@@ -57,7 +49,11 @@
             <TextView
                 android:id="@+id/resultTv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:hint="  Temperature will be displayed"/>
 
 
         </ScrollView>
