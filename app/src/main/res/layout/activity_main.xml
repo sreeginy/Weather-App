@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@null"
-            android:onClick="getWeatherDetails"
+            android:onClick="getWeather"
             android:text="Get Weather"
             android:textColor="@color/darkblue" />
 
