@@ -40,4 +40,5 @@ dependencies {
     implementation 'com.airbnb.android:lottie:5.2.0'
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'com.android.volley:volley:1.2.1'
 }
