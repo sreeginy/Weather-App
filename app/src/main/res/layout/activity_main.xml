@@ -16,47 +16,53 @@
         android:text="Weather Update"
         />
 
+    <ImageView
+        android:id="@+id/findImg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/image_search_24"
+        >
+    </ImageView>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="677dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="80dp"
+        >
 
-        <EditText
-            android:id="@+id/cityEdt"
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="30dp"
+            android:text="0*c"
+            android:textColor="@color/darkblue"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/weatherCon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Enter city name"
-            android:inputType="textPersonName" />
+            android:textSize="30sp"
+            android:textColor="@color/darkblue"
+            android:text="__________"
+            android:paddingStart="30sp" />
 
-
-        <Button
-            android:id="@+id/getBtn"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@null"
-            android:onClick="getWeather"
-            android:text="Get Weather"
-            android:textColor="@color/darkblue" />
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:text="Fetching_____"
+            android:textColor="@color/darkblue"
+            android:paddingStart="30sp"
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="150dp">
-
-            <TextView
-                android:id="@+id/resultTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:gravity="center"
-                android:layout_marginTop="20dp"
-                android:hint="  Temperature will be displayed"/>
-
-
-        </ScrollView>
     </LinearLayout>
+
+
 
 </LinearLayout>
