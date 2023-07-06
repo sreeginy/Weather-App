@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
 //    DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
-    TextView NameofCity, weatherState, Temperature;
-    ImageView weatherIcon;
+    TextView mNameofCity, mweatherState, mTemperature;
+    ImageView mWeatherIcon;
     RelativeLayout cityFinder;
     LocationManager mlocationManager;
     LocationListener mlocationListener;
@@ -61,16 +61,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        weatherState = findViewById(R.id.weatherCon);
-        Temperature = findViewById(R.id.temperature);
-        weatherIcon = findViewById(R.id.weatherIcon);
+        mweatherState = findViewById(R.id.weatherCon);
+        mTemperature = findViewById(R.id.temperature);
+        mWeatherIcon = findViewById(R.id.weatherIcon);
         cityFinder = findViewById(R.id.cityFinder);
-        NameofCity = findViewById(R.id.cityName);
+        mNameofCity = findViewById(R.id.cityName);
 
         cityFinder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -82,11 +83,31 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String city = intent.getStringExtra("City");
         if (city != null) {
+            apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
             getWeatherForNewCity(city);
         } else {
             getWeatherForCurrentLocation();
         }
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Intent intent = getIntent();
+//        String city = intent.getStringExtra("City");
+//        if (city != null) {
+//            getWeatherForNewCity(city);
+//        } else {
+//            getWeatherForCurrentLocation();
+//        }
+//    }
+
+//    private void getWeatherForNewCity(String city) {
+//        RequestParams params = new RequestParams();
+//        params.put("q", city);
+//        params.put("appid", apiKey);
+//        letsdoSomeNetworking(params);
+//    }
 
     private void getWeatherForNewCity(String city) {
         RequestParams params = new RequestParams();
@@ -166,15 +187,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void updateUI(com.sreeginy.weather.WeatherData weather) {
-
-        Temperature.setText(weather.gettemperature());
-        NameofCity.setText(weather.getcity());
-        weatherState.setText(weather.getweatherType());
-        int resourceID = getResources().getIdentifier(weather.weathericon(),"drawable",getPackageName());
-        weatherIcon.setImageResource(resourceID);
+//    public void updateUI(WeatherData weather) {
+//        mTemperature.setText(weather.mTemperature);
+//        mNameofCity.setText(weather.mNameofCity);
+//
+//        if (weather.weatherType != null) {
+//            mweatherState.setText(weather.weatherType);
+//        } else {
+//            mweatherState.setText("N/A");
+//        }
+//
+//        int resourceID = getResources().getIdentifier(weather.mWeatherIcon, "drawable", getPackageName());
+//        if (resourceID != 0) {
+//            mWeatherIcon.setImageResource(resourceID);
+//        } else {
+////            mWeatherIcon.setImageResource(R.drawable.weatherIcon);
+//        }
+//    }
+    public void updateUI(WeatherData weather) {
+        mTemperature.setText(weather.mTemperature);
+        mNameofCity.setText(weather.mNameofCity);
+        mweatherState.setText(weather.weatherType);
+        int resourceID = getResources().getIdentifier(weather.mWeatherIcon, "drawable", getPackageName());
+        mWeatherIcon.setImageResource(resourceID);
     }
+
 
     protected void onPause() {
         super.onPause();

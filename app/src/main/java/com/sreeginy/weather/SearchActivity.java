@@ -30,12 +30,14 @@ public class SearchActivity extends AppCompatActivity {
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
                 String newCity = editText.getText().toString();
                 Intent intent = new Intent(SearchActivity.this, MainActivity.class);
-                intent.putExtra("city", newCity);
+                intent.putExtra("City", newCity);
+                startActivity(intent);
                 return false;
             }
         });
     }
 }
+
+
