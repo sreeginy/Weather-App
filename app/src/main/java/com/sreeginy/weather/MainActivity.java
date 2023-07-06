@@ -1,7 +1,6 @@
 package com.sreeginy.weather;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-
+import android.Manifest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -128,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             return;
@@ -136,39 +134,55 @@ public class MainActivity extends AppCompatActivity {
 
         mlocationManager.requestLocationUpdates(Location_Provider, MIN_TIME, MIN_DISTANCE, mlocationListener);
 
-}
+    }
 
     public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-       super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-       if(requestCode == REQUEST_CODE) {
-           if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-               Toast.makeText(MainActivity.this, "Locationget Successfully", Toast.LENGTH_SHORT).show();
-               getWeatherForCurrentLocation();
-           } else {
+        if (requestCode == REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(MainActivity.this, "Locationget Successfully", Toast.LENGTH_SHORT).show();
+                getWeatherForCurrentLocation();
+            } else {
 
-           }
-       }
-       }
-
-       private void letsdoSomeNetworking(RequestParams params) {
-
-           AsyncHttpClient client = new AsyncHttpClient();
-           client.get(apiUrl,params,new JsonHttpResponseHandler() {
-               @Override
-               public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                   Toast.makeText(MainActivity.this, "Data Get Success", Toast.LENGTH_SHORT).show();
-                   com.sreeginy.weather.WeatherData weatherData = null;
-                   try {
-                       weatherData = com.sreeginy.weather.fromJson(response);
-                   } catch (JSONException e ) {
-                       e.printStackTrace();
-                   }
-                   updateUI(weatherData);
-               }
-           });
-       }
+            }
+        }
     }
+
+    private void letsdoSomeNetworking(RequestParams params) {
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(apiUrl, params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                Toast.makeText(MainActivity.this, "Data Get Success", Toast.LENGTH_SHORT).show();
+                com.sreeginy.weather.WeatherData weatherData = null;
+                try {
+                    weatherData = com.sreeginy.weather.WeatherData.fromJson(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                updateUI(weatherData);
+            }
+        });
+    }
+
+    public void updateUI(com.sreeginy.weather.WeatherData weather) {
+
+        Temperature.setText(weather.gettemperature());
+        NameofCity.setText(weather.getcity());
+        weatherState.setText(weather.getweatherType());
+        int resourceID = getResources().getIdentifier(weather.weathericon(),"drawable",getPackageName());
+        weatherIcon.setImageResource(resourceID);
+    }
+
+    protected void onPause() {
+        super.onPause();
+        if(mlocationManager != null) {
+            mlocationManager.removeUpdates(mlocationListener);
+        }
+    }
+}
 
 
 
