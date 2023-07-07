@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     String Location_Provider = LocationManager.GPS_PROVIDER;
 
-
 //    private final String url = "https://api.openweathermap.org/data/2.5/weather";
 //    private final String appid ="0834e2dbfe812be60ce5bb46a74aa17c";
 
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout cityFinder;
     LocationManager mlocationManager;
     LocationListener mlocationListener;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -220,8 +217,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-
 
 //    public void getWeather(View v) {
 //        Retrofit retrofit = new Retrofit.Builder()
