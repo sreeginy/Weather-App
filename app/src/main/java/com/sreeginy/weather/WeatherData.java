@@ -1,6 +1,5 @@
 package com.sreeginy.weather;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,66 +9,64 @@ public class WeatherData {
     public String mWeatherIcon;
     public String mNameofCity;
     public String weatherType;
-    public String rain;
-    public String windSpeed;
+    public double rain;
+    public double windSpeed;
     public int humidity;
     private int condition;
 
-
     public static WeatherData fromJson(JSONObject jsonObject) throws JSONException {
-
-
         try {
             WeatherData weatherData = new WeatherData();
             weatherData.mNameofCity = jsonObject.getString("name");
             weatherData.condition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
             weatherData.weatherType = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
 
+           weatherData.rain = jsonObject.getJSONObject("rain").getDouble("1h");
+           weatherData.windSpeed = jsonObject.getJSONObject("wind").getDouble("speed");
+           weatherData.humidity = jsonObject.getJSONObject("main").getInt("humidity");
 
             weatherData.mWeatherIcon = updateWeatherIcon(weatherData.condition);
-            double tempResult = jsonObject.getJSONObject("main").getDouble("temp")-273.15;
-            int roundedValue = (int)Math.rint(tempResult);
+            double tempResult = jsonObject.getJSONObject("main").getDouble("temp") - 273.15;
+            int roundedValue = (int) Math.rint(tempResult);
             weatherData.mTemperature = Integer.toString(roundedValue);
-            return weatherData;
 
+            return weatherData;
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
-
     }
 
-
     private static String updateWeatherIcon(int condition) {
-        if(condition >= 0 && condition <=300) {
-            return "thunderstrom1";
-        } else if (condition >= 300 && condition <=500) {
+        if (condition >= 0 && condition <= 300) {
+            return "thunderstorm1";
+        } else if (condition >= 300 && condition <= 500) {
             return "lightrain";
-        } else if (condition >= 500 && condition <=600) {
+        } else if (condition >= 500 && condition <= 600) {
             return "shower";
-        } else if (condition >= 600 && condition <=700) {
+        } else if (condition >= 600 && condition <= 700) {
             return "snow2";
-        } else if (condition >= 701 && condition <=771) {
+        } else if (condition >= 701 && condition <= 771) {
             return "fog";
-        } else if (condition >= 772 && condition <=800) {
+        } else if (condition >= 772 && condition <= 800) {
             return "overcast";
         } else if (condition == 800) {
             return "sunny";
-        } else if (condition >= 801 && condition <=804) {
+        } else if (condition >= 801 && condition <= 804) {
             return "cloudy";
-        } else if (condition >= 900 && condition <=902) {
-            return "thunderstrom1";
+        } else if (condition >= 900 && condition <= 902) {
+            return "thunderstorm1";
         } else if (condition == 903) {
             return "snow1";
         } else if (condition == 904) {
-            return  "sunny";
-        } else if (condition >= 905 && condition <=1000) {
-            return "thunderstrom2";
-        } return "dunno";
+            return "sunny";
+        } else if (condition >= 905 && condition <= 1000) {
+            return "thunderstorm2";
+        }
+        return "dunno";
     }
-
-
 }
+
 
 //    private static String updateWeatherIcon(int condition) {
 //        if (condition >= 200 && condition <= 232) {

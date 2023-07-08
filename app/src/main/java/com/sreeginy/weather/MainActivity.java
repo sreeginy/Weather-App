@@ -220,8 +220,17 @@ public class MainActivity extends AppCompatActivity {
         mWeatherIcon.setImageResource(resourceID);
 
 
+        // Set rain, windSpeed, and humidity
+        rain.setText("Rain: " + weather.rain + "mm");
+        windSpeed.setText("Wind Speed: " + weather.windSpeed + "m/s");
+        humidity.setText("Humidity: " + weather.humidity + "%");
 
-
+        if (weather != null) {
+            updateUI(weather);
+        } else {
+            // Handle the case when weatherData is null, such as displaying an error message
+            Toast.makeText(MainActivity.this, "Failed to fetch weather data", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
