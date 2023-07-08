@@ -13,6 +13,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -26,6 +27,9 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import cz.msebera.android.httpclient.Header;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -33,7 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     EditText etCity;
-    TextView resultTv;
+    TextView date;
     String apiKey = "0834e2dbfe812be60ce5bb46a74aa17c";
     String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=Colombo&appid=" + apiKey;
 
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView mNameofCity, mweatherState, mTemperature;
     ImageView mWeatherIcon;
-    RelativeLayout cityFinder;
+    Button searchBtn;
     LocationManager mlocationManager;
     LocationListener mlocationListener;
 
@@ -62,10 +66,15 @@ public class MainActivity extends AppCompatActivity {
         mweatherState = findViewById(R.id.weatherCon);
         mTemperature = findViewById(R.id.temperature);
         mWeatherIcon = findViewById(R.id.weatherIcon);
-        cityFinder = findViewById(R.id.cityFinder);
+        searchBtn = findViewById(R.id.searchBtn);
         mNameofCity = findViewById(R.id.cityName);
+        date = findViewById(R.id.date);
 
-        cityFinder.setOnClickListener(new View.OnClickListener() {
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+        String curretndate = format.format(new Date());
+        date.setText(curretndate);
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
