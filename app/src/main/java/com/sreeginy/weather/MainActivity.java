@@ -36,7 +36,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText etCity;
     TextView date;
     String apiKey = "0834e2dbfe812be60ce5bb46a74aa17c";
     String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=Colombo&appid=" + apiKey;
@@ -47,12 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
     String Location_Provider = LocationManager.GPS_PROVIDER;
 
-//    private final String url = "https://api.openweathermap.org/data/2.5/weather";
-//    private final String appid ="0834e2dbfe812be60ce5bb46a74aa17c";
 
-//    DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
-    TextView mNameofCity, mweatherState, mTemperature;
+    TextView mNameofCity, mweatherState, mTemperature, rain, windSpeed, humidity;
     ImageView mWeatherIcon;
     Button searchBtn;
     LocationManager mlocationManager;
@@ -69,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
         searchBtn = findViewById(R.id.searchBtn);
         mNameofCity = findViewById(R.id.cityName);
         date = findViewById(R.id.date);
+
+        rain = findViewById(R.id.rain);
+        windSpeed = findViewById(R.id.wind);
+        humidity = findViewById(R.id.humidity);
+
+
 
         SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
         String curretndate = format.format(new Date());
@@ -211,11 +213,16 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
     public void updateUI(WeatherData weather) {
-        mTemperature.setText(weather.mTemperature);
+        mTemperature.setText(weather.mTemperature+"°");
         mNameofCity.setText(weather.mNameofCity);
-        mweatherState.setText(weather.weatherType);
+        mweatherState.setText("Mostly  " + weather.weatherType);
         int resourceID = getResources().getIdentifier(weather.mWeatherIcon, "drawable", getPackageName());
         mWeatherIcon.setImageResource(resourceID);
+
+
+
+
+
     }
 
 

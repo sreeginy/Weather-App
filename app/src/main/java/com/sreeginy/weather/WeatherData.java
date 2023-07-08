@@ -10,6 +10,9 @@ public class WeatherData {
     public String mWeatherIcon;
     public String mNameofCity;
     public String weatherType;
+    public String rain;
+    public String windSpeed;
+    public int humidity;
     private int condition;
 
 
@@ -21,6 +24,8 @@ public class WeatherData {
             weatherData.mNameofCity = jsonObject.getString("name");
             weatherData.condition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
             weatherData.weatherType = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
+
+
             weatherData.mWeatherIcon = updateWeatherIcon(weatherData.condition);
             double tempResult = jsonObject.getJSONObject("main").getDouble("temp")-273.15;
             int roundedValue = (int)Math.rint(tempResult);
