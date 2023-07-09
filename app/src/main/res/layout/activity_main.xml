@@ -103,7 +103,7 @@
                     android:textSize="50sp" />
 
                 <TextView
-                    android:id="@+id/weatherCon"
+                    android:id="@+id/weatherType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -135,6 +135,7 @@
                             android:id="@+id/rain"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="___"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
@@ -143,6 +144,7 @@
                             android:id="@+id/textView10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="Rain"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
@@ -165,6 +167,7 @@
                             android:id="@+id/wind"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="____"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
@@ -173,6 +176,7 @@
                             android:id="@+id/textView12"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="Wind Speed"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
@@ -195,6 +199,7 @@
                             android:id="@+id/humidity"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="___"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
@@ -204,6 +209,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Humidity"
+                            android:layout_marginTop="5dp"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
                     </LinearLayout>

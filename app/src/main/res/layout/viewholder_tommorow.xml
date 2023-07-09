@@ -36,6 +36,7 @@
             app:srcCompat="@drawable/snowy" />
 
         <TextView
+            android:id="@+id/weatherType2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Storm"
@@ -44,6 +45,7 @@
             android:textColor="@color/white"/>
 
         <TextView
+            android:id="@+id/highTxv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="H:33°"
@@ -52,6 +54,7 @@
             android:layout_marginStart="50dp"/>
 
         <TextView
+            android:id="@+id/lowTxV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="L:27°"

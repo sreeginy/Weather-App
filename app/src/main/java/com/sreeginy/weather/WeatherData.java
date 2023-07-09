@@ -4,31 +4,34 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class WeatherData {
-
-    public String mTemperature;
-    public String mWeatherIcon;
     public String mNameofCity;
-    public String weatherType;
-    public double rain;
-    public double windSpeed;
-    public int humidity;
-    private int condition;
+    public String mTemperature;
+    public String mWeatherType;
+    public String mWeatherIcon;
+    public String rain;
+    public String windSpeed;
+    public String humidity;
+    public int condition;
 
+    // Rest of the class code
     public static WeatherData fromJson(JSONObject jsonObject) throws JSONException {
         try {
             WeatherData weatherData = new WeatherData();
+
             weatherData.mNameofCity = jsonObject.getString("name");
+
             weatherData.condition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
-            weatherData.weatherType = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
-
-           weatherData.rain = jsonObject.getJSONObject("rain").getDouble("1h");
-           weatherData.windSpeed = jsonObject.getJSONObject("wind").getDouble("speed");
-           weatherData.humidity = jsonObject.getJSONObject("main").getInt("humidity");
-
+            weatherData.mWeatherType = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
             weatherData.mWeatherIcon = updateWeatherIcon(weatherData.condition);
-            double tempResult = jsonObject.getJSONObject("main").getDouble("temp") - 273.15;
-            int roundedValue = (int) Math.rint(tempResult);
+
+            double temperature = jsonObject.getJSONObject("main").getDouble("temp") - 273.15;
+            int roundedValue = (int) Math.rint(temperature);
             weatherData.mTemperature = Integer.toString(roundedValue);
+
+            JSONObject rainObject = jsonObject.optJSONObject("rain");
+            weatherData.rain = rainObject != null ? rainObject.getString("3h") : "0";
+            weatherData.windSpeed = jsonObject.getJSONObject("wind").getString("speed");
+            weatherData.humidity = jsonObject.getJSONObject("main").getString("humidity");
 
             return weatherData;
         } catch (JSONException e) {
@@ -66,24 +69,3 @@ public class WeatherData {
         return "dunno";
     }
 }
-
-
-//    private static String updateWeatherIcon(int condition) {
-//        if (condition >= 200 && condition <= 232) {
-//            return "thunderstorm";
-//        } else if (condition >= 300 && condition <= 321) {
-//            return "drizzle";
-//        } else if (condition >= 500 && condition <= 531) {
-//            return "rain";
-//        } else if (condition >= 600 && condition <= 622) {
-//            return "snow";
-//        } else if (condition >= 701 && condition <= 781) {
-//            return "mist";
-//        } else if (condition == 800) {
-//            return "clear";
-//        } else if (condition >= 801 && condition <= 804) {
-//            return "clouds";
-//        } else {
-//            return "unknown";
-//        }
-//    }
