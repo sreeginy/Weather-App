@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
                 updateUI(weatherData);
             }
         });
@@ -175,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
         windSpeed.setText(weather.windSpeed + " km/h");
         humidity.setText(weather.humidity + "%");
     }
-
 
     @Override
     protected void onPause() {
