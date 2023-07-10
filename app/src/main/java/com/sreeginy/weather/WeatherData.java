@@ -1,19 +1,60 @@
 package com.sreeginy.weather;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WeatherData {
-    public String mNameOfCity;
-    public String mTemperature;
-    public String mWeatherType;
-    public String mWeatherIcon;
-    public String rain;
-    public String windSpeed;
-    public String humidity;
-    public int condition;
+public class WeatherData implements Parcelable {
+    private String mNameOfCity;
+    private String mTemperature;
+    private String mWeatherType;
+    private String mWeatherIcon;
+    private String rain;
+    private String windSpeed;
+    private String humidity;
+    private int condition;
+    private double latitude;
+    private double longitude;
+    private long sunrise;
+    private long sunset;
+    private int pressure;
 
-    // Rest of the class code
+    public WeatherData() {
+        // Default constructor
+    }
+
+    protected WeatherData(Parcel in) {
+        mNameOfCity = in.readString();
+        mTemperature = in.readString();
+        mWeatherType = in.readString();
+        mWeatherIcon = in.readString();
+        rain = in.readString();
+        windSpeed = in.readString();
+        humidity = in.readString();
+        condition = in.readInt();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
+        sunrise = in.readLong();
+        sunset = in.readLong();
+        pressure = in.readInt();
+    }
+
+    public static final Creator<WeatherData> CREATOR = new Creator<WeatherData>() {
+        @Override
+        public WeatherData createFromParcel(Parcel in) {
+            return new WeatherData(in);
+        }
+
+        @Override
+        public WeatherData[] newArray(int size) {
+            return new WeatherData[size];
+        }
+    };
+
     public static WeatherData fromJson(JSONObject jsonObject) throws JSONException {
         try {
             WeatherData weatherData = new WeatherData();
@@ -32,6 +73,12 @@ public class WeatherData {
             weatherData.rain = rainObject != null ? rainObject.getString("3h") : "0";
             weatherData.windSpeed = jsonObject.getJSONObject("wind").getString("speed");
             weatherData.humidity = jsonObject.getJSONObject("main").getString("humidity");
+
+            weatherData.setLatitude(jsonObject.getJSONObject("coord").getDouble("lat"));
+            weatherData.setLongitude(jsonObject.getJSONObject("coord").getDouble("lon"));
+            weatherData.setSunrise(jsonObject.getJSONObject("sys").getLong("sunrise"));
+            weatherData.setSunset(jsonObject.getJSONObject("sys").getLong("sunset"));
+            weatherData.setPressure(jsonObject.getJSONObject("main").getInt("pressure"));
 
             return weatherData;
         } catch (JSONException e) {
@@ -68,4 +115,127 @@ public class WeatherData {
         }
         return "dunno";
     }
+
+    public String getmNameOfCity() {
+        return mNameOfCity;
+    }
+
+    public String getmTemperature() {
+        return mTemperature;
+    }
+
+    public String getmWeatherType() {
+        return mWeatherType;
+    }
+
+    public String getmWeatherIcon() {
+        return mWeatherIcon;
+    }
+
+    public String getRain() {
+        return rain;
+    }
+
+    public String getWindSpeed() {
+        return windSpeed;
+    }
+
+    public String getHumidity() {
+        return humidity;
+    }
+
+    public int getCondition() {
+        return condition;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public long getSunrise() {
+        return sunrise;
+    }
+
+    public long getSunset() {
+        return sunset;
+    }
+
+    public int getPressure() {
+        return pressure;
+    }
+
+    public void setmNameOfCity(String mNameOfCity) {
+        this.mNameOfCity = mNameOfCity;
+    }
+
+    public void setmTemperature(String mTemperature) {
+        this.mTemperature = mTemperature;
+    }
+
+    public void setmWeatherType(String mWeatherType) {
+        this.mWeatherType = mWeatherType;
+    }
+
+    public void setmWeatherIcon(String mWeatherIcon) {
+        this.mWeatherIcon = mWeatherIcon;
+    }
+
+    public void setRain(String rain) {
+        this.rain = rain;
+    }
+
+    public void setWindSpeed(String windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
+    }
+
+    public void setPressure(int pressure) {
+        this.pressure = pressure;
+    }
+
+    public void setSunset(long sunset) {
+        this.sunset = sunset;
+    }
+
+    public void setSunrise(long sunrise) {
+        this.sunrise = sunrise;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mNameOfCity);
+        dest.writeString(mTemperature);
+        dest.writeString(mWeatherType);
+        dest.writeString(mWeatherIcon);
+        dest.writeString(rain);
+        dest.writeString(windSpeed);
+        dest.writeString(humidity);
+        dest.writeInt(condition);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
+        dest.writeLong(sunrise);
+        dest.writeLong(sunset);
+        dest.writeInt(pressure);
+    }
+
 }

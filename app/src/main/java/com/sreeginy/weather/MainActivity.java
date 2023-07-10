@@ -75,6 +75,32 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mWeatherIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a WeatherData object with the weather details
+                WeatherData weatherData = new WeatherData();
+                weatherData.setmNameOfCity(mNameOfCity.getText().toString());
+                weatherData.setmTemperature(mTemperature.getText().toString());
+                weatherData.setmWeatherType(mWeatherType.getText().toString());
+                weatherData.setmWeatherIcon("weather_icon"); // Set the appropriate weather icon value
+                weatherData.setRain(rain.getText().toString());
+                weatherData.setWindSpeed(windSpeed.getText().toString());
+                weatherData.setHumidity(humidity.getText().toString());
+
+//                weatherData.setLatitude(latitude.getText().toString()); // Replace 'latitude' with the appropriate TextView for latitude
+//                weatherData.setLongitude(longitude.getText().toString()); // Replace 'longitude' with the appropriate TextView for longitude
+//                weatherData.setSunrise(sunrise.getText().toString()); // Replace 'sunrise' with the appropriate TextView for sunrise
+//                weatherData.setSunset(sunset.getText().toString()); // Replace 'sunset' with the appropriate TextView for sunset
+//                weatherData.setPressure(pressure.getText().toString()); // Replace 'pressure' with the appropriate TextView for pressure
+
+                // Pass the weatherData object to the ViewWeatherDetails activity
+                Intent intent = new Intent(MainActivity.this, ViewWeatherDetails.class);
+                intent.putExtra("weatherData", weatherData);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -167,14 +193,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateUI(WeatherData weather) {
-        mTemperature.setText(weather.mTemperature + "°");
-        mNameOfCity.setText(weather.mNameOfCity);
-        mWeatherType.setText("Mostly " + weather.mWeatherType);
-        int resourceId = getResources().getIdentifier(weather.mWeatherIcon, "drawable", getPackageName());
+        mTemperature.setText(weather.getmTemperature() + "°");
+        mNameOfCity.setText(weather.getmNameOfCity());
+        mWeatherType.setText("Mostly " + weather.getmWeatherType());
+        int resourceId = getResources().getIdentifier(weather.getmWeatherIcon(), "drawable", getPackageName());
         mWeatherIcon.setImageResource(resourceId);
-        rain.setText(weather.rain + " mm");
-        windSpeed.setText(weather.windSpeed + " km/h");
-        humidity.setText(weather.humidity + "%");
+        rain.setText(weather.getRain() + " mm");
+        windSpeed.setText(weather.getWindSpeed() + " km/h");
+        humidity.setText(weather.getHumidity() + "%");
     }
 
     @Override
