@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,13 +18,14 @@
 
         <TextView
             android:id="@+id/dayTxtV"
-            android:layout_width="76dp"
+            android:layout_width="74dp"
             android:layout_height="69dp"
             android:padding="13dp"
             android:text="day"
+            android:layout_marginStart="5dp"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,31 +38,33 @@
 
         <TextView
             android:id="@+id/weatherType2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Storm"
+            android:layout_width="88dp"
+            android:layout_height="46dp"
             android:layout_marginStart="5dp"
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
+            android:textAlignment="center"
+            android:text="Storm"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/highTxv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="52dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="10dp"
             android:text="H:33°"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:layout_marginStart="50dp"/>
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/lowTxV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="53dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
             android:text="L:27°"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:layout_marginStart="15dp"
-            />
+            android:textSize="15sp" />
 
     </LinearLayout>
 

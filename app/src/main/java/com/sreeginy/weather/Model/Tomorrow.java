@@ -1,13 +1,13 @@
 package com.sreeginy.weather.Model;
 
-public class Tommorow {
+public class Tomorrow {
     private String day;
     private String picPath;
     private String status;
     private int highTemp;
     private int lowTemp;
 
-    public Tommorow(String day, String picPath, String status, int highTemp, int lowTemp) {
+    public Tomorrow(String day, String picPath, String status, int highTemp, int lowTemp) {
         this.day = day;
         this.picPath = picPath;
         this.status = status;

@@ -1,10 +1,6 @@
 package com.sreeginy.weather;
 
 import android.Manifest;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,6 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
     final float MIN_DISTANCE = 1000;
     final int REQUEST_CODE = 101;
 
-    String Location_Provider = LocationManager.GPS_PROVIDER;
+    String locationProvider = LocationManager.GPS_PROVIDER;
 
-    TextView mNameofCity, mWeatherType, mTemperature, rain, windSpeed, humidity;
+    TextView mNameOfCity, mWeatherType, mTemperature, rain, windSpeed, humidity;
     ImageView mWeatherIcon;
     Button searchBtn;
-    LocationManager mlocationManager;
-    LocationListener mlocationListener;
+    LocationManager locationManager;
+    LocationListener locationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mTemperature = findViewById(R.id.temperature);
         mWeatherIcon = findViewById(R.id.weatherIcon);
         searchBtn = findViewById(R.id.searchBtn);
-        mNameofCity = findViewById(R.id.cityName);
+        mNameOfCity = findViewById(R.id.cityName);
         date = findViewById(R.id.date);
 
         rain = findViewById(R.id.rain);
@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getWeatherForCurrentLocation() {
-        mlocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        mlocationListener = new LocationListener() {
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
                 String latitude = String.valueOf(location.getLatitude());
@@ -131,9 +131,10 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        mlocationManager.requestLocationUpdates(Location_Provider, MIN_TIME, MIN_DISTANCE, mlocationListener);
+        locationManager.requestLocationUpdates(locationProvider, MIN_TIME, MIN_DISTANCE, locationListener);
     }
 
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
@@ -166,8 +167,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateUI(WeatherData weather) {
         mTemperature.setText(weather.mTemperature + "°");
-        mNameofCity.setText(weather.mNameofCity);
-        mWeatherType.setText("Mostly" + weather.mWeatherType);
+        mNameOfCity.setText(weather.mNameOfCity);
+        mWeatherType.setText("Mostly " + weather.mWeatherType);
         int resourceId = getResources().getIdentifier(weather.mWeatherIcon, "drawable", getPackageName());
         mWeatherIcon.setImageResource(resourceId);
         rain.setText(weather.rain + " mm");
@@ -175,10 +176,12 @@ public class MainActivity extends AppCompatActivity {
         humidity.setText(weather.humidity + "%");
     }
 
+
+    @Override
     protected void onPause() {
         super.onPause();
-        if (mlocationManager != null) {
-            mlocationManager.removeUpdates(mlocationListener);
+        if (locationManager != null) {
+            locationManager.removeUpdates(locationListener);
         }
     }
 }

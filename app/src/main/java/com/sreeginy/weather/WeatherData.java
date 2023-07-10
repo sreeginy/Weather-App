@@ -4,7 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class WeatherData {
-    public String mNameofCity;
+    public String mNameOfCity;
     public String mTemperature;
     public String mWeatherType;
     public String mWeatherIcon;
@@ -18,7 +18,7 @@ public class WeatherData {
         try {
             WeatherData weatherData = new WeatherData();
 
-            weatherData.mNameofCity = jsonObject.getString("name");
+            weatherData.mNameOfCity = jsonObject.getString("name");
 
             weatherData.condition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
             weatherData.mWeatherType = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");

@@ -11,37 +11,36 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.sreeginy.weather.Model.Tommorow;
+import com.sreeginy.weather.Model.Tomorrow;
 import com.sreeginy.weather.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class TommorowAdapter extends RecyclerView.Adapter<TommorowAdapter.ViewHolder> {
+public class TomorrowAdapter extends RecyclerView.Adapter<TomorrowAdapter.ViewHolder> {
 
-    ArrayList<Tommorow> items;
+    ArrayList<Tomorrow> items;
     Context context;
 
-    public TommorowAdapter(ArrayList<Tommorow> items) {
+    public TomorrowAdapter(ArrayList<Tomorrow> items) {
         this.items = items;
     }
 
     @NonNull
     @Override
-    public TommorowAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TomorrowAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_tommorow, parent,false);
         context = parent.getContext();
         return new ViewHolder(inflate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TommorowAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TomorrowAdapter.ViewHolder holder, int position) {
 
         holder.dayTxt.setText(items.get(position).getDay());
         holder.statusTxt.setText(items.get(position).getStatus());
-        holder.lowTxt.setText(items.get(position).getLowTemp());
-        holder.highTxt.setText(items.get(position).getHighTemp());
+        holder.lowTxt.setText(String.valueOf(items.get(position).getLowTemp()));
+        holder.highTxt.setText(String.valueOf(items.get(position).getHighTemp()));
+
 
         int drawableResourceId = holder.itemView.getResources()
                 .getIdentifier(items.get(position).getPicPath(),"drawable",holder.itemView.getContext().getPackageName());
