@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     Button searchBtn;
     LocationManager locationManager;
     LocationListener locationListener;
+    ImageButton viewBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         windSpeed = findViewById(R.id.wind);
         humidity = findViewById(R.id.humidity);
 
+        viewBtn = findViewById(R.id.viewBtn);
+
         SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
         String currentDate = format.format(new Date());
         date.setText(currentDate);
@@ -72,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        viewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ViewWeatherDetails.class);
                 startActivity(intent);
             }
         });
