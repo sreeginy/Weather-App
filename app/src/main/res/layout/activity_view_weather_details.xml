@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black_01"
-    android:padding="15dp">
+    android:padding="15dp"
+    tools:context=".ViewWeatherDetails">
 
     <ImageView
         android:id="@+id/backBtn"
@@ -23,7 +24,7 @@
     <ImageButton
         android:id="@+id/sortBtn"
         android:layout_width="50dp"
-        android:layout_height="45dp"
+        android:layout_height="46dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="270dp"
@@ -34,45 +35,57 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/sort_24" />
 
+
     <TextView
         android:id="@+id/textView"
-        android:background="@drawable/background_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="65dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/background_2"
         android:fontFamily="@font/lemonada_semibold"
         android:text="   Weather Details   "
+        android:textAlignment="center"
         android:textColor="@color/gray"
         android:textSize="27sp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/layoutTop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="355dp"
+        android:layout_height="619dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="1dp"
         android:background="@drawable/background_2"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/cityNameTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="_______"
+            android:textAlignment="center"
+            android:textColor="@color/gold"
+            android:textSize="28dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/mWeatherIcons"
                 android:layout_width="150dp"
-                android:layout_height="75dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/umbrella" />
+                app:srcCompat="@drawable/daycloud" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,23 +94,26 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/rain"
+                    android:id="@+id/weatherTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="_______"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="______"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/gold"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Rain"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Weather"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -113,7 +129,7 @@
                 android:layout_width="150dp"
                 android:layout_height="75dp"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/umbrella" />
+                app:srcCompat="@drawable/temperature" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -122,21 +138,25 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/temperatureTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="_______"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="_____"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/gold"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Rain"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Temperature"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -149,7 +169,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="75dp"
+                android:layout_height="70dp"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/umbrella" />
 
@@ -160,21 +180,25 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/rainTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="_______"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="______"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/gold"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="Rain"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -187,9 +211,9 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="75dp"
+                android:layout_height="63dp"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/umbrella" />
+                app:srcCompat="@drawable/wind" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -198,21 +222,25 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/windSpeedTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="_______"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/gold"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Rain"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Wind Speed"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -225,9 +253,9 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="75dp"
+                android:layout_height="63dp"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/umbrella" />
+                app:srcCompat="@drawable/humidity" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -236,21 +264,25 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/humidityTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="_______"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="______"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/gold"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Rain"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Humidity"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -258,14 +290,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="75dp"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/umbrella" />
+                app:srcCompat="@drawable/sunny_24" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -274,21 +306,25 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/sunriseTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="_______"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="______"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/gold"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Rain"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Sun rise"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </LinearLayout>

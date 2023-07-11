@@ -3,15 +3,24 @@ package com.sreeginy.weather;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class ViewWeatherDetails extends AppCompatActivity {
 
-    private TextView temperatureTv, weatherTypeTv, rainTv, windSpeedTv, humidityTv, latitudeTv, longitudeTv, sunriseTv, sunsetTv, pressureT;
+    private TextView temperatureTv, weatherTypeTv, rainTv, windSpeedTv, humidityTv, cityNameTv,latitudeTv, longitudeTv, sunriseTv, sunsetTv, pressureT;
+    private ImageButton sortBtn;
+
+    private List<WeatherData> weatherDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,38 +31,62 @@ public class ViewWeatherDetails extends AppCompatActivity {
         rainTv = findViewById(R.id.rainTV);
         windSpeedTv = findViewById(R.id.windSpeedTV);
         humidityTv = findViewById(R.id.humidityTV);
-        latitudeTv = findViewById(R.id.latitudeTV);
-        longitudeTv = findViewById(R.id.longitudeTV);
         sunriseTv = findViewById(R.id.sunriseTV);
-        sunsetTv = findViewById(R.id.sunsetTV);
-        pressureT = findViewById(R.id.pressureTV);
+        cityNameTv = findViewById(R.id.cityNameTv);
+        sortBtn = findViewById(R.id.sortBtn);
 
+        ImageView backButton = findViewById(R.id.backBtn);
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        sortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortWeatherDataByTemperature();
+            }
+        });
+        
         updateUI();
     }
-    public void updateUI() {
+    
 
+    public void updateUI() {
         // Get the WeatherData object from the Intent extras
         WeatherData weatherData = getIntent().getParcelableExtra("weatherData");
         if (weatherData != null) {
             temperatureTv.setText(weatherData.getmTemperature());
             weatherTypeTv.setText(weatherData.getmWeatherType());
-            rainTv.setText(weatherData.getRain() );
+            rainTv.setText(weatherData.getRain());
             windSpeedTv.setText(weatherData.getWindSpeed());
             humidityTv.setText(weatherData.getHumidity());
-            latitudeTv.setText(String.valueOf(weatherData.getLatitude()));
-            longitudeTv.setText(String.valueOf(weatherData.getLongitude()));
+            cityNameTv.setText(weatherData.getmNameOfCity());
 
             SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.getDefault());
             sunriseTv.setText(timeFormat.format(new Date(weatherData.getSunrise() * 1000)));
-            sunsetTv.setText(timeFormat.format(new Date(weatherData.getSunset() * 1000)));
 
-            pressureT.setText(String.valueOf(weatherData.getPressure()));
         }
     }
 
+    public void sortWeatherDataByTemperature() {
+
+        Collections.sort(weatherDataList, new Comparator<WeatherData>() {
+            @Override
+            public int compare(WeatherData weatherData1, WeatherData weatherData2) {
+                // Convert temperature strings to numeric values for comparison
+                int temperature1 = Integer.parseInt(weatherData1.getmTemperature());
+                int temperature2 = Integer.parseInt(weatherData2.getmTemperature());
+
+                // Compare temperatures
+                return Integer.compare(temperature1, temperature2);
+            }
+        });
+
+        // After sorting, update the UI or perform any additional operations
+        updateUI();
+    }
 }
-
-
-
-
