@@ -1,5 +1,10 @@
 package com.sreeginy.weather.Model;
 
+import com.sreeginy.weather.WeatherData;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Tomorrow {
     private String day;
     private String picPath;
@@ -14,6 +19,26 @@ public class Tomorrow {
         this.highTemp = highTemp;
         this.lowTemp = lowTemp;
     }
+
+    public Tomorrow() {
+
+    }
+
+    public static Tomorrow fromJson(JSONObject jsonObject) throws JSONException {
+
+        Tomorrow tomorrow = new Tomorrow();
+
+        tomorrow.status = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
+        tomorrow.lowTemp(jsonObject.getJSONObject("main").getInt("temp_min"));
+        tomorrow.highTemp(jsonObject.getJSONObject("main").getInt("temp_max"));
+
+
+
+        return tomorrow;
+
+    }
+
+
 
     public String getDay() {
         return day;

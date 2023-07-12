@@ -110,6 +110,19 @@ public class SearchActivity extends AppCompatActivity {
         weatherIcon.setImageResource(weatherIconResId);
     }
 
+//    private void initRecyclerView() {
+//        ArrayList<Tomorrow> items = new ArrayList<>();
+//
+//        // Add your logic here to fetch tomorrow's weather data from the API and populate the `items` list
+//
+//        recyclerView = findViewById(R.id.view2);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//
+//        adapterTomorrow = new TomorrowAdapter(items);
+//        recyclerView.setAdapter(adapterTomorrow);
+//    }
+
+
     private void initRecyclerView() {
         ArrayList<Tomorrow> items = new ArrayList<>();
 

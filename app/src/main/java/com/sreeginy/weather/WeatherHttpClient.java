@@ -24,7 +24,7 @@ public class WeatherHttpClient {
     public static final int WEATHER_FETCH_FAILURE = 2;
 
     private static final String API_KEY = "0834e2dbfe812be60ce5bb46a74aa17c";
-    private static final String API_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+    private static final String API_BASE_URL = "api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid={0834e2dbfe812be60ce5bb46a74aa17c}";
 
     public void fetchWeatherData(String cityName, final Handler weatherHandler) {
         String apiUrl = API_BASE_URL + "?q=" + cityName + "&appid=" + API_KEY;

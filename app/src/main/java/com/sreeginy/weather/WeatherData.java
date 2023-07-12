@@ -86,7 +86,7 @@ public class WeatherData implements Parcelable {
 
             weatherData.setMinTemperature(jsonObject.getJSONObject("main").getInt("temp_min"));
             weatherData.setMaxTemperature(jsonObject.getJSONObject("main").getInt("temp_max"));
-
+           
 
             return weatherData;
         } catch (JSONException e) {
@@ -187,7 +187,7 @@ public class WeatherData implements Parcelable {
     public void setMinTemperature(int minTemperature){
         this.minTemperature = minTemperature;
     }
-
+    
     public void setMaxTemperature(int maxTemperature){
         this.maxTemperature = maxTemperature;
     }
@@ -239,8 +239,8 @@ public class WeatherData implements Parcelable {
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
-
-
+    
+    
 
     @Override
     public int describeContents() {
@@ -267,5 +267,5 @@ public class WeatherData implements Parcelable {
     }
 
 
-
+  
 }
