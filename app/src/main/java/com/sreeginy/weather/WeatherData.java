@@ -22,6 +22,8 @@ public class WeatherData implements Parcelable {
     private long sunrise;
     private long sunset;
     private int pressure;
+    private int maxTemperature;
+    private int minTemperature;
 
     public WeatherData() {
         // Default constructor
@@ -41,6 +43,8 @@ public class WeatherData implements Parcelable {
         sunrise = in.readLong();
         sunset = in.readLong();
         pressure = in.readInt();
+        maxTemperature = in.readInt();
+        minTemperature = in.readInt();
     }
 
     public static final Creator<WeatherData> CREATOR = new Creator<WeatherData>() {
@@ -80,6 +84,10 @@ public class WeatherData implements Parcelable {
             weatherData.setSunset(jsonObject.getJSONObject("sys").getLong("sunset"));
             weatherData.setPressure(jsonObject.getJSONObject("main").getInt("pressure"));
 
+            weatherData.setMinTemperature(jsonObject.getJSONObject("main").getInt("temp_min"));
+            weatherData.setMaxTemperature(jsonObject.getJSONObject("main").getInt("temp_max"));
+
+
             return weatherData;
         } catch (JSONException e) {
             e.printStackTrace();
@@ -95,7 +103,7 @@ public class WeatherData implements Parcelable {
         } else if (condition >= 500 && condition <= 600) {
             return "shower";
         } else if (condition >= 600 && condition <= 700) {
-            return "snow2";
+            return "snow";
         } else if (condition >= 701 && condition <= 771) {
             return "fog";
         } else if (condition >= 772 && condition <= 800) {
@@ -105,15 +113,16 @@ public class WeatherData implements Parcelable {
         } else if (condition >= 801 && condition <= 804) {
             return "cloudy";
         } else if (condition >= 900 && condition <= 902) {
-            return "thunderstorm1";
+            return "thunderstorm";
         } else if (condition == 903) {
             return "snow1";
         } else if (condition == 904) {
-            return "sunny";
+            return "clear";
         } else if (condition >= 905 && condition <= 1000) {
             return "thunderstorm2";
+        } else {
+            return "clear";
         }
-        return "dunno";
     }
 
     public String getmNameOfCity() {
@@ -168,6 +177,21 @@ public class WeatherData implements Parcelable {
         return pressure;
     }
 
+    public int getMaxTemperature() {
+        return maxTemperature;
+    }
+
+    public int getMinTemperature() {
+        return minTemperature;
+    }
+    public void setMinTemperature(int minTemperature){
+        this.minTemperature = minTemperature;
+    }
+
+    public void setMaxTemperature(int maxTemperature){
+        this.maxTemperature = maxTemperature;
+    }
+
     public void setmNameOfCity(String mNameOfCity) {
         this.mNameOfCity = mNameOfCity;
     }
@@ -216,6 +240,8 @@ public class WeatherData implements Parcelable {
         this.latitude = latitude;
     }
 
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -236,6 +262,10 @@ public class WeatherData implements Parcelable {
         dest.writeLong(sunrise);
         dest.writeLong(sunset);
         dest.writeInt(pressure);
+        dest.writeInt(maxTemperature);
+        dest.writeInt(minTemperature);
     }
+
+
 
 }

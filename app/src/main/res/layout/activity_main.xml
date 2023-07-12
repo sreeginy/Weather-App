@@ -39,11 +39,11 @@
                 android:layout_width="50dp"
                 android:layout_height="45dp"
                 android:background="@color/black_01"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="116dp"
                 android:layout_marginRight="70dp"
                 android:layout_marginTop="20dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/snowy" />
+                app:srcCompat="@drawable/more_horiz_24" />
             </LinearLayout>
 
             <Button
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:text="___"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/gold"
                     android:textSize="50sp" />
 
                 <TextView
