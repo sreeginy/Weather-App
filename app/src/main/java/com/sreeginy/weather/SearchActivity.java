@@ -2,6 +2,9 @@ package com.sreeginy.weather;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,25 +16,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.sreeginy.weather.Adapter.TomorrowAdapter;
-import com.sreeginy.weather.Model.Tomorrow;
-import com.sreeginy.weather.WeatherData;
-import com.sreeginy.weather.WeatherHttpClient;
-
-import java.util.ArrayList;
-
 public class SearchActivity extends AppCompatActivity {
 
     private TextView temperature, weatherCon, rain, wind, humidity, cityName;
     private ImageView weatherIcon;
-
-    private RecyclerView.Adapter adapterTomorrow;
-    private RecyclerView recyclerView;
 
     private WeatherHttpClient weatherHttpClient;
 
@@ -57,6 +45,7 @@ public class SearchActivity extends AppCompatActivity {
 
         final EditText editText = findViewById(R.id.searchCity);
         ImageView backButton = findViewById(R.id.backBtn);
+        ImageView dayBtn = findViewById(R.id.dayBtn);
 
         temperature = findViewById(R.id.temperature);
         weatherCon = findViewById(R.id.weatherCon);
@@ -73,6 +62,14 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+        dayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 Intent intent = new Intent(SearchActivity.this, DaysActivity.class);
+                 startActivity(intent);
+            }
+        });
+
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -82,15 +79,10 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView = findViewById(R.id.view2);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         weatherHttpClient = new WeatherHttpClient();
 
         String cityName = getIntent().getStringExtra("City"); // Get the city name from intent
         fetchWeatherData(cityName);
-
-        initRecyclerView();
     }
 
     private void fetchWeatherData(String cityName) {
@@ -109,56 +101,4 @@ public class SearchActivity extends AppCompatActivity {
                 weatherData.getmWeatherIcon(), "drawable", getPackageName());
         weatherIcon.setImageResource(weatherIconResId);
     }
-
-//    private void initRecyclerView() {
-//        ArrayList<Tomorrow> items = new ArrayList<>();
-//
-//        // Add your logic here to fetch tomorrow's weather data from the API and populate the `items` list
-//
-//        recyclerView = findViewById(R.id.view2);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-//
-//        adapterTomorrow = new TomorrowAdapter(items);
-//        recyclerView.setAdapter(adapterTomorrow);
-//    }
-
-
-    private void initRecyclerView() {
-        ArrayList<Tomorrow> items = new ArrayList<>();
-
-        // Call the API to fetch tomorrow's weather data
-        String cityName = getIntent().getStringExtra("City");
-        WeatherHttpClient weatherHttpClient = new WeatherHttpClient();
-        weatherHttpClient.fetchWeatherData(cityName, new Handler() {
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                switch (msg.what) {
-                    case WeatherHttpClient.WEATHER_FETCH_SUCCESS:
-                        WeatherData weatherData = (WeatherData) msg.obj;
-                        // Assuming the API response contains tomorrow's weather data
-                        // You need to adapt this part based on the API response structure
-                        Tomorrow tomorrowWeather = new Tomorrow(
-                                "Tomorrow",
-                                weatherData.getmWeatherIcon(),
-                                weatherData.getmWeatherType(),
-                                weatherData.getMaxTemperature(),
-                                weatherData.getMinTemperature()
-                        );
-                        items.add(tomorrowWeather);
-                        adapterTomorrow.notifyDataSetChanged();
-                        break;
-                    case WeatherHttpClient.WEATHER_FETCH_FAILURE:
-                        Log.e(TAG, "Failed to fetch tomorrow's weather data");
-                        break;
-                }
-            }
-        });
-
-        recyclerView = findViewById(R.id.view2);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-        adapterTomorrow = new TomorrowAdapter(items);
-        recyclerView.setAdapter(adapterTomorrow);
-    }
-
 }
