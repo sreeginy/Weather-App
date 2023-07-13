@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,6 +30,7 @@ public class DaysActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ForecastAdapter forecastAdapter;
     private WeatherHttpClient weatherHttpClient;
+    private ImageView backButton;
 
     private Handler forecastHandler = new Handler() {
         @Override
@@ -51,6 +53,7 @@ public class DaysActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_days);
 
+        backButton = findViewById(R.id.daybackBtn);
         recyclerView = findViewById(R.id.forecastRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -61,6 +64,13 @@ public class DaysActivity extends AppCompatActivity {
         weatherHttpClient = new WeatherHttpClient();
 
         fetchForecastData();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void updateForecastUI(ArrayList<ForecastWeatherData> forecastData) {

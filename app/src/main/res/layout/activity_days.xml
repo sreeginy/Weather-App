@@ -11,8 +11,8 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="37dp"
-        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/forecastRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/daybackBtn"
             android:layout_width="44dp"
             android:layout_height="46dp"
             android:layout_marginStart="8dp"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="07-DAY FORECAST"
+            android:text="07 - DAY FORECAST"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25dp"
@@ -45,14 +45,29 @@
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Current Location"
+        android:layout_marginLeft="26dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="13dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/forecastRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="633dp"
+        android:layout_height="638dp"
+        android:layout_marginTop="2dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
