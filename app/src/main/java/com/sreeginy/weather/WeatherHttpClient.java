@@ -174,14 +174,15 @@ public class WeatherHttpClient {
 
                 processedDays.add(day); // Add the processed day to the set
 
-                int condition = forecastObject.getJSONArray("weather").getJSONObject(0).getInt("id");
-                String icon = updateWeatherIcon(condition);
+
+                String icon = forecastObject.getJSONArray("weather")
+                        .getJSONObject(0).getString("icon");
                 String weatherType = forecastObject.getJSONArray("weather")
                         .getJSONObject(0).getString("main");
                 double highTemp = forecastObject.getJSONObject("main")
-                        .getDouble("temp_max");
+                        .getDouble("temp_max") - 273.15;
                 double lowTemp = forecastObject.getJSONObject("main")
-                        .getDouble("temp_min");
+                        .getDouble("temp_min") - 273.15;
 
                 ForecastWeatherData forecastData = new ForecastWeatherData(day, icon, weatherType, highTemp, lowTemp);
                 forecastDataList.add(forecastData);
@@ -194,35 +195,8 @@ public class WeatherHttpClient {
         }
     }
 
-    private static String updateWeatherIcon(int condition) {
-        if (condition >= 0 && condition <= 300) {
-            return "thunderstorm1";
-        } else if (condition >= 300 && condition <= 500) {
-            return "lightrain";
-        } else if (condition >= 500 && condition <= 600) {
-            return "shower";
-        } else if (condition >= 600 && condition <= 700) {
-            return "snow";
-        } else if (condition >= 701 && condition <= 771) {
-            return "fog";
-        } else if (condition >= 772 && condition <= 800) {
-            return "overcast";
-        } else if (condition == 800) {
-            return "sunny";
-        } else if (condition >= 801 && condition <= 804) {
-            return "cloudy";
-        } else if (condition >= 900 && condition <= 902) {
-            return "thunderstorm";
-        } else if (condition == 903) {
-            return "snow1";
-        } else if (condition == 904) {
-            return "clear";
-        } else if (condition >= 905 && condition <= 1000) {
-            return "thunderstorm2";
-        } else {
-            return "clear";
-        }
-    }
+
+
 
     private String getFormattedDay(String dateTime) {
         try {
@@ -235,7 +209,6 @@ public class WeatherHttpClient {
             return "";
         }
     }
-
 
 
 

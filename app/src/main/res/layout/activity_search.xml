@@ -22,8 +22,8 @@
 
     <ImageButton
         android:id="@+id/dayBtn"
-        android:layout_width="50dp"
-        android:layout_height="45dp"
+        android:layout_width="48dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="335dp"
         android:layout_marginTop="20dp"
         android:background="@color/black_01"

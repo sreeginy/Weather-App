@@ -44,14 +44,33 @@ import java.util.ArrayList;
 
             holder.dayTxtV.setText(forecastData.getDay());
             holder.weatherType2.setText(forecastData.getWeatherType());
-            holder.highTxv.setText(String.valueOf(forecastData.getHighTemp()));
-            holder.lowTxV.setText(String.valueOf(forecastData.getLowTemp()));
+
+            String highTemp = formatTemperature(forecastData.getHighTemp());
+            String lowTemp = formatTemperature2(forecastData.getLowTemp());
+            holder.highTxv.setText(highTemp);
+            holder.lowTxV.setText(lowTemp);
 
             // Load the icon using a library like Glide or Picasso
+            String iconUrl = getIconUrl(forecastData.getIcon());
             Glide.with(context)
-                    .load(forecastData.getIcon())
+                    .load(iconUrl)
                     .into(holder.imageView);
         }
+
+        private String getIconUrl(String iconCode) {
+            return "https://openweathermap.org/img/w/" + iconCode + ".png";
+        }
+
+        private String formatTemperature(double temperature) {
+            int roundedTemp = (int) Math.round(temperature);
+            return "H: " + roundedTemp + "°";
+        }
+
+        private String formatTemperature2(double temperature) {
+            int roundedTemp = (int) Math.round(temperature);
+            return "L: " + roundedTemp + "°";
+        }
+
 
         @Override
         public int getItemCount() {

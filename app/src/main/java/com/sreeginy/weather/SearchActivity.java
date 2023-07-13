@@ -45,7 +45,6 @@ public class SearchActivity extends AppCompatActivity {
 
         final EditText editText = findViewById(R.id.searchCity);
         ImageView backButton = findViewById(R.id.backBtn);
-        ImageView dayBtn = findViewById(R.id.dayBtn);
 
         temperature = findViewById(R.id.temperature);
         weatherCon = findViewById(R.id.weatherCon);
@@ -62,13 +61,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        dayBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 Intent intent = new Intent(SearchActivity.this, DaysActivity.class);
-                 startActivity(intent);
-            }
-        });
+
 
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

@@ -35,7 +35,6 @@ public class ForecastWeatherData {
     }
 
 
-
     public String getDay() {
         return day;
     }

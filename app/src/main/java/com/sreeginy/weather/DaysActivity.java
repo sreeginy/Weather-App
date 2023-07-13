@@ -69,7 +69,7 @@ public class DaysActivity extends AppCompatActivity {
     }
 
     private void fetchForecastData() {
-        String cityName = "Zocca"; // Replace with the desired city name
+        String cityName = "Colombo"; // Replace with the desired city name
         weatherHttpClient.fetch5DayForecastData(cityName, forecastHandler);
     }
 
