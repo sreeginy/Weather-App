@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private TextView temperature, weatherCon, rain, wind, humidity, cityName;
+    private TextView temperature, weatherCon, rain, wind, humidity, cityName, maxTemperature, minTemperature, latitude;
     private ImageView weatherIcon;
 
     private WeatherHttpClient weatherHttpClient;
@@ -53,6 +53,10 @@ public class SearchActivity extends AppCompatActivity {
         humidity = findViewById(R.id.humidity);
         cityName = findViewById(R.id.cityName);
         weatherIcon = findViewById(R.id.weatherIcon);
+
+        maxTemperature = findViewById(R.id.hightemperature);
+        minTemperature = findViewById(R.id.lowtemperature);
+        latitude = findViewById(R.id.latitude);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,5 +97,10 @@ public class SearchActivity extends AppCompatActivity {
         int weatherIconResId = getResources().getIdentifier(
                 weatherData.getmWeatherIcon(), "drawable", getPackageName());
         weatherIcon.setImageResource(weatherIconResId);
+
+        maxTemperature.setText(weatherData.getMaxTemperature() + "°");
+        minTemperature.setText(weatherData.getMinTemperature() + "°");
+        latitude.setText(String.valueOf(weatherData.getLatitude() + "°"));
+
     }
 }

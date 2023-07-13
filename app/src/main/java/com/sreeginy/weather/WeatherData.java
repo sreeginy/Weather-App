@@ -22,8 +22,8 @@ public class WeatherData implements Parcelable {
     private long sunrise;
     private long sunset;
     private int pressure;
-    private int maxTemperature;
-    private int minTemperature;
+    private double maxTemperature;
+    private double minTemperature;
 
     public WeatherData() {
         // Default constructor
@@ -43,8 +43,8 @@ public class WeatherData implements Parcelable {
         sunrise = in.readLong();
         sunset = in.readLong();
         pressure = in.readInt();
-        maxTemperature = in.readInt();
-        minTemperature = in.readInt();
+        maxTemperature = in.readDouble();
+        minTemperature = in.readDouble();
     }
 
     public static final Creator<WeatherData> CREATOR = new Creator<WeatherData>() {
@@ -78,15 +78,19 @@ public class WeatherData implements Parcelable {
             weatherData.windSpeed = jsonObject.getJSONObject("wind").getString("speed");
             weatherData.humidity = jsonObject.getJSONObject("main").getString("humidity");
 
-            weatherData.setLatitude(jsonObject.getJSONObject("coord").getDouble("lat"));
+
             weatherData.setLongitude(jsonObject.getJSONObject("coord").getDouble("lon"));
             weatherData.setSunrise(jsonObject.getJSONObject("sys").getLong("sunrise"));
             weatherData.setSunset(jsonObject.getJSONObject("sys").getLong("sunset"));
             weatherData.setPressure(jsonObject.getJSONObject("main").getInt("pressure"));
 
-            weatherData.setMinTemperature(jsonObject.getJSONObject("main").getInt("temp_min"));
-            weatherData.setMaxTemperature(jsonObject.getJSONObject("main").getInt("temp_max"));
-           
+
+            double maxTemperature = jsonObject.getJSONObject("main").getDouble("temp_max") - 273.15;
+            double minTemperature = jsonObject.getJSONObject("main").getDouble("temp_min") - 273.15;
+            weatherData.setLatitude(jsonObject.getJSONObject("coord").getDouble("lat") - 273.15) ;
+
+
+
 
             return weatherData;
         } catch (JSONException e) {
@@ -177,19 +181,24 @@ public class WeatherData implements Parcelable {
         return pressure;
     }
 
-    public int getMaxTemperature() {
+    public void setCondition(int condition) {
+        this.condition = condition;
+    }
+
+    public double getMaxTemperature() {
         return maxTemperature;
     }
 
-    public int getMinTemperature() {
+    public void setMaxTemperature(double maxTemperature) {
+        this.maxTemperature = maxTemperature;
+    }
+
+    public double getMinTemperature() {
         return minTemperature;
     }
-    public void setMinTemperature(int minTemperature){
+
+    public void setMinTemperature(double minTemperature) {
         this.minTemperature = minTemperature;
-    }
-    
-    public void setMaxTemperature(int maxTemperature){
-        this.maxTemperature = maxTemperature;
     }
 
     public void setmNameOfCity(String mNameOfCity) {
@@ -262,8 +271,8 @@ public class WeatherData implements Parcelable {
         dest.writeLong(sunrise);
         dest.writeLong(sunset);
         dest.writeInt(pressure);
-        dest.writeInt(maxTemperature);
-        dest.writeInt(minTemperature);
+        dest.writeDouble(maxTemperature);
+        dest.writeDouble(minTemperature);
     }
 
 
