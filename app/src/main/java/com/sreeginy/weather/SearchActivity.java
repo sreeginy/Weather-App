@@ -93,14 +93,15 @@ public class SearchActivity extends AppCompatActivity {
         rain.setText(weatherData.getRain() + " mm");
         wind.setText(weatherData.getWindSpeed() + " km/h");
         humidity.setText(weatherData.getHumidity() + "%");
+
         // Set weather icon based on the weather condition
         int weatherIconResId = getResources().getIdentifier(
                 weatherData.getmWeatherIcon(), "drawable", getPackageName());
         weatherIcon.setImageResource(weatherIconResId);
 
-        maxTemperature.setText(weatherData.getMaxTemperature() + "°");
-        minTemperature.setText(weatherData.getMinTemperature() + "°");
-        latitude.setText(String.valueOf(weatherData.getLatitude() + "°"));
-
+        maxTemperature.setText(String.format( "%.2f°", weatherData.getMaxTemperature()));
+        minTemperature.setText(String.format("%.2f°", weatherData.getMinTemperature()));
+        latitude.setText(String.format("%.2f°", weatherData.getLatitude()));
     }
+
 }

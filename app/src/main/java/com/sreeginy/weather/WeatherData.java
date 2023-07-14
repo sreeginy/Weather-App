@@ -78,19 +78,19 @@ public class WeatherData implements Parcelable {
             weatherData.windSpeed = jsonObject.getJSONObject("wind").getString("speed");
             weatherData.humidity = jsonObject.getJSONObject("main").getString("humidity");
 
-
             weatherData.setLongitude(jsonObject.getJSONObject("coord").getDouble("lon"));
             weatherData.setSunrise(jsonObject.getJSONObject("sys").getLong("sunrise"));
             weatherData.setSunset(jsonObject.getJSONObject("sys").getLong("sunset"));
             weatherData.setPressure(jsonObject.getJSONObject("main").getInt("pressure"));
 
+            double maxTemperature = jsonObject.getJSONObject("main").getDouble("temp_max");
 
-            double maxTemperature = jsonObject.getJSONObject("main").getDouble("temp_max") - 273.15;
-            double minTemperature = jsonObject.getJSONObject("main").getDouble("temp_min") - 273.15;
-            weatherData.setLatitude(jsonObject.getJSONObject("coord").getDouble("lat") - 273.15) ;
+            weatherData.setMaxTemperature(maxTemperature);
 
+            double minTemperature = jsonObject.getJSONObject("main").getDouble("temp_min");
+            weatherData.setMinTemperature(minTemperature);
 
-
+            weatherData.setLatitude(jsonObject.getJSONObject("coord").getDouble("lat"));
 
             return weatherData;
         } catch (JSONException e) {
@@ -98,6 +98,12 @@ public class WeatherData implements Parcelable {
             return null;
         }
     }
+
+//    private static String formatTemperature(double temperature) {
+//        int roundedValue = (int) Math.rint(temperature);
+//        return Integer.toString(roundedValue) + "°";
+//    }
+
 
     private static String updateWeatherIcon(int condition) {
         if (condition >= 0 && condition <= 300) {
