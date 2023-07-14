@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -263,11 +264,14 @@ public class WeatherHttpClient {
             for (int i = 0; i < forecastList.length(); i++) {
                 JSONObject forecastObject = forecastList.getJSONObject(i);
                 String date = forecastObject.getString("dt_txt");
-                double temperature = forecastObject.getJSONObject("main").getDouble("temp")- 273.15;
+
+                double temperature = forecastObject.getJSONObject("main").getDouble("temp") - 273.15;
+                int roundedValue = (int) Math.round(temperature);
+                String temperatureString = Integer.toString(roundedValue);
+
                 String weatherType = forecastObject.getJSONArray("weather").getJSONObject(0).getString("main");
 
-
-                ForecastWeatherData forecastData = new ForecastWeatherData(date, temperature, weatherType);
+                ForecastWeatherData forecastData = new ForecastWeatherData(date, weatherType, temperatureString);
                 forecastDataList.add(forecastData);
             }
 
@@ -277,6 +281,7 @@ public class WeatherHttpClient {
             return null;
         }
     }
+
 
 
 

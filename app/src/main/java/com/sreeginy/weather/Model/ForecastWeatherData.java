@@ -11,28 +11,27 @@ public class ForecastWeatherData {
     private double highTemp;
     private double lowTemp;
 
-   private String date;
+    private  String temperature;
+    private String date;
 
     public ForecastWeatherData(String day, String icon, String weatherType, double highTemp, double lowTemp) {
+
         this.day = day;
         this.icon = icon;
         this.weatherType = weatherType;
         this.highTemp = highTemp;
         this.lowTemp = lowTemp;
-    }
-
-
-        public ForecastWeatherData(String date, double temperature, String weatherType) {
-            this.date = date;
-            this.highTemp = temperature;
-            this.weatherType = weatherType;
         }
 
+    public ForecastWeatherData(String date, String weatherType, String temperature) {
 
+        this.date = date;
+        this.weatherType = weatherType;
+        this.temperature = temperature;
+
+    }
 
     public static ForecastWeatherData fromJson(JSONObject forecastObject) throws JSONException, JSONException {
-
-
 
         String day = forecastObject.getString("day");
         String icon = forecastObject.getString("icon");
@@ -40,8 +39,15 @@ public class ForecastWeatherData {
         double highTemp = forecastObject.getJSONObject("main").getDouble("temp_max");
         double lowTemp = forecastObject.getJSONObject("main").getDouble("temp_min");
 
-
         return new ForecastWeatherData(day, icon, weatherType, highTemp, lowTemp);
+    }
+
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
     }
 
     public String getDate() {

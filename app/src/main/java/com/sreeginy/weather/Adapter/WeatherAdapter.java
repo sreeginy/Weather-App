@@ -34,10 +34,30 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
         ForecastWeatherData forecastData = forecastDataList.get(position);
 
         holder.dateTextView.setText(forecastData.getDate());
-        holder.temperatureTextView.setText(String.valueOf(forecastData.getHighTemp()));
+
+//        holder.temperatureTextView.setText(forecastData.getTemperature());
 
 
+        holder.temperatureTextView.setText(formatTemperature(forecastData.getTemperature()));
 
+        holder.weatherType.setText(formatWeatherType(forecastData.getWeatherType()));
+
+
+    }
+
+    private String formatWeatherType(String weatherType) {
+        // Perform any formatting or modification to the weather type as needed
+        // For example, you can add a prefix or modify the text according to your requirements.
+        String formattedWeatherType = "Weather :  " + weatherType;
+
+        return formattedWeatherType;
+    }
+
+
+    // Add the formatTemperature method to the Adapter class
+    private String formatTemperature(String temperature) {
+        int roundedTemp = Integer.parseInt(temperature);
+        return "Temperature : " + roundedTemp + "°";
     }
 
     @Override
@@ -48,12 +68,13 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView dateTextView;
         public TextView temperatureTextView;
+        public TextView weatherType;
 
         public ViewHolder(View itemView) {
             super(itemView);
             dateTextView = itemView.findViewById(R.id.dateTextView);
             temperatureTextView = itemView.findViewById(R.id.temperatureTextView);
-            // Initialize other views
+            weatherType = itemView.findViewById(R.id.weatherType);
         }
     }
 }
