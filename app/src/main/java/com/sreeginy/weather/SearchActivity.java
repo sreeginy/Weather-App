@@ -5,7 +5,6 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +14,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.sreeginy.weather.Model.WeatherData;
 
 public class SearchActivity extends AppCompatActivity {
 

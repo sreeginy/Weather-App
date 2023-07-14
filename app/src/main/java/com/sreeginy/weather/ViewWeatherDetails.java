@@ -2,11 +2,14 @@ package com.sreeginy.weather;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.sreeginy.weather.Model.WeatherData;
 
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -47,7 +50,8 @@ public class ViewWeatherDetails extends AppCompatActivity {
         sortBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sortWeatherDataByTemperature();
+                Intent intent = new Intent(ViewWeatherDetails.this, WeatherSortingActivity.class);
+                startActivity(intent);
             }
         });
         

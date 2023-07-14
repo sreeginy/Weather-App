@@ -34,7 +34,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
         ForecastWeatherData forecastData = forecastDataList.get(position);
 
         holder.dateTextView.setText(forecastData.getDate());
-        holder.temperatureTextView.setText(forecastData.getHighTemp());
+        holder.temperatureTextView.setText(String.valueOf(forecastData.getHighTemp()));
+
 
 
     }

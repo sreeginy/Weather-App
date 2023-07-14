@@ -22,6 +22,11 @@ public class ForecastWeatherData {
     }
 
 
+        public ForecastWeatherData(String date, double temperature, String weatherType) {
+            this.date = date;
+            this.highTemp = temperature;
+            this.weatherType = weatherType;
+        }
 
 
 

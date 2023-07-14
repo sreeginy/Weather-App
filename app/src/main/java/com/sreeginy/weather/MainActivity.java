@@ -22,6 +22,7 @@ import androidx.core.app.ActivityCompat;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.sreeginy.weather.Model.WeatherData;
 
 import org.json.JSONException;
 import org.json.JSONObject;

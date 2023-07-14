@@ -1,12 +1,12 @@
 package com.sreeginy.weather;
 
 import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
 import com.sreeginy.weather.Model.ForecastWeatherData;
+import com.sreeginy.weather.Model.WeatherData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -209,6 +209,75 @@ public class WeatherHttpClient {
             return "";
         }
     }
+
+    public void fetch7DayForecastData(String cityName, final Handler forecastHandler) {
+        String apiUrl = API_FORECAST_URL + "?q=" + cityName + "&appid=" + API_KEY + "&cnt=7";
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(apiUrl);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        InputStream inputStream = connection.getInputStream();
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                        StringBuilder response = new StringBuilder();
+                        String line;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            response.append(line);
+                        }
+                        bufferedReader.close();
+                        inputStream.close();
+
+                        ArrayList<ForecastWeatherData> forecastData = parse7DayForecastData(response.toString());
+                        if (forecastData != null) {
+                            Message successMessage = forecastHandler.obtainMessage(FORECAST_FETCH_SUCCESS, forecastData);
+                            successMessage.sendToTarget();
+                        } else {
+                            Log.e(TAG, "Failed to parse forecast data");
+                            forecastHandler.sendEmptyMessage(FORECAST_FETCH_FAILURE);
+                        }
+                    } else {
+                        Log.e(TAG, "Forecast API request failed with response code: " + responseCode);
+                        forecastHandler.sendEmptyMessage(FORECAST_FETCH_FAILURE);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    forecastHandler.sendEmptyMessage(FORECAST_FETCH_FAILURE);
+                }
+            }
+        }).start();
+    }
+
+    private ArrayList<ForecastWeatherData> parse7DayForecastData(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray forecastList = jsonObject.getJSONArray("list");
+
+            ArrayList<ForecastWeatherData> forecastDataList = new ArrayList<>();
+
+            for (int i = 0; i < forecastList.length(); i++) {
+                JSONObject forecastObject = forecastList.getJSONObject(i);
+                String date = forecastObject.getString("dt_txt");
+                double temperature = forecastObject.getJSONObject("main").getDouble("temp")- 273.15;
+                String weatherType = forecastObject.getJSONArray("weather").getJSONObject(0).getString("main");
+
+
+                ForecastWeatherData forecastData = new ForecastWeatherData(date, temperature, weatherType);
+                forecastDataList.add(forecastData);
+            }
+
+            return forecastDataList;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
 
 
