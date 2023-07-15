@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="6dp"
     android:background="@color/black_01"
-    tools:context=".WeatherSortingActivity">
+    tools:context=".Activity.WeatherSortingActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"

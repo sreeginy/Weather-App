@@ -1,4 +1,4 @@
-package com.sreeginy.weather;
+package com.sreeginy.weather.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sreeginy.weather.Model.WeatherData;
+import com.sreeginy.weather.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.sreeginy.weather;
+package com.sreeginy.weather.Activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -23,6 +23,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.sreeginy.weather.Model.WeatherData;
+import com.sreeginy.weather.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

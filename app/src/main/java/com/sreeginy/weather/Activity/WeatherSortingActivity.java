@@ -1,4 +1,4 @@
-package com.sreeginy.weather;
+package com.sreeginy.weather.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sreeginy.weather.Adapter.WeatherAdapter;
 import com.sreeginy.weather.Model.ForecastWeatherData;
+import com.sreeginy.weather.R;
+import com.sreeginy.weather.WeatherHttpClient;
 
 import java.util.ArrayList;
 import java.util.Collections;

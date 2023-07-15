@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black_01"
     android:padding="15dp"
-    tools:context=".ViewWeatherDetails">
+    tools:context=".Activity.ViewWeatherDetails">
 
     <ImageView
         android:id="@+id/backBtn"

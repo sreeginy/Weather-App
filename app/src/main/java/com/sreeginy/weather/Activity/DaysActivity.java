@@ -1,4 +1,4 @@
-package com.sreeginy.weather;
+package com.sreeginy.weather.Activity;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -21,6 +21,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sreeginy.weather.Adapter.ForecastAdapter;
 import com.sreeginy.weather.Model.ForecastWeatherData;
+import com.sreeginy.weather.R;
+import com.sreeginy.weather.WeatherHttpClient;
 
 import java.util.ArrayList;
 

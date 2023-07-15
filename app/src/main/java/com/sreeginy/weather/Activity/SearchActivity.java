@@ -1,4 +1,4 @@
-package com.sreeginy.weather;
+package com.sreeginy.weather.Activity;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sreeginy.weather.Model.WeatherData;
+import com.sreeginy.weather.R;
+import com.sreeginy.weather.WeatherHttpClient;
 
 public class SearchActivity extends AppCompatActivity {
 

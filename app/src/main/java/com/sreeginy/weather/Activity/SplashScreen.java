@@ -1,10 +1,12 @@
-package com.sreeginy.weather;
+package com.sreeginy.weather.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.sreeginy.weather.R;
 
 public class SplashScreen extends AppCompatActivity {
 
