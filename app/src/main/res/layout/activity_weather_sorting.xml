@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="6dp"
     android:background="@color/black_01"
     tools:context=".WeatherSortingActivity">
 
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="37dp"
         android:orientation="horizontal">
 
@@ -27,23 +28,34 @@
         android:src="@drawable/arrow_circle_left_24"
         />
 
-    <Spinner
-        android:id="@+id/sortSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:drawableRight="@drawable/search_24"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/background_3"
-        android:entries="@array/sort_options"
-        />
+        <Spinner
+            android:id="@+id/sortSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/background_3"
+            android:drawableRight="@drawable/search_24"
+            android:entries="@array/sort_options" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="77dp"
+        android:textColor="@color/dodgerBlue"
+        android:text="Northern Province"
+        android:textSize="16dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="12dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/poppins_semibold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_marginTop="80dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="397dp"
+        android:layout_height="636dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="8dp" />
 </RelativeLayout>

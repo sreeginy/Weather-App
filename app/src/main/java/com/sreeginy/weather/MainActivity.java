@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DaysActivity.class);
+                Intent intent = new Intent(MainActivity.this, WeatherSortingActivity.class);
                 startActivity(intent);
             }
         });

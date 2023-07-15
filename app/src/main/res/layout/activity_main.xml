@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -39,11 +39,11 @@
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:background="@color/black_01"
-                android:layout_marginLeft="115dp"
+                android:layout_marginLeft="100dp"
                 android:layout_marginRight="70dp"
                 android:layout_marginTop="20dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/calendar_month_24" />
+                app:srcCompat="@drawable/sort_24" />
             </LinearLayout>
 
             <Button
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/background_2"
                 android:text="Want to Search for New city"
                 android:textColor="@color/white"
@@ -64,7 +64,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="23dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="T O D A Y"
                 android:textAlignment="center"
@@ -79,12 +79,14 @@
                 android:text="__ ____ ____"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:layout_marginTop="8dp"/>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="478dp"
+                android:layout_height="500dp"
+                android:layout_marginTop="10dp"
                 android:layout_margin="16dp"
                 android:background="@drawable/background_2"
                 android:orientation="vertical">
@@ -132,7 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="25dp">
 
                     <LinearLayout
                         android:layout_width="0dp"

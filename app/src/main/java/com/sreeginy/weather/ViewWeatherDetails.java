@@ -21,7 +21,7 @@ import java.util.Locale;
 public class ViewWeatherDetails extends AppCompatActivity {
 
     private TextView temperatureTv, weatherTypeTv, rainTv, windSpeedTv, humidityTv, cityNameTv,latitudeTv, longitudeTv, sunriseTv, sunsetTv, pressureT;
-    private ImageButton sortBtn;
+    private ImageButton dayBtn;
 
     private List<WeatherData> weatherDataList;
 
@@ -36,7 +36,7 @@ public class ViewWeatherDetails extends AppCompatActivity {
         humidityTv = findViewById(R.id.humidityTV);
         sunriseTv = findViewById(R.id.sunriseTV);
         cityNameTv = findViewById(R.id.cityNameTv);
-        sortBtn = findViewById(R.id.sortBtn);
+        dayBtn = findViewById(R.id.sortBtn);
 
         ImageView backButton = findViewById(R.id.backBtn);
 
@@ -47,10 +47,10 @@ public class ViewWeatherDetails extends AppCompatActivity {
             }
         });
 
-        sortBtn.setOnClickListener(new View.OnClickListener() {
+        dayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ViewWeatherDetails.this, WeatherSortingActivity.class);
+                Intent intent = new Intent(ViewWeatherDetails.this, DaysActivity.class);
                 startActivity(intent);
             }
         });

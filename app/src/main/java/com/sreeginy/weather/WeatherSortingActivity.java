@@ -66,7 +66,7 @@ public class WeatherSortingActivity extends AppCompatActivity implements Adapter
 
     private void fetchData() {
         WeatherHttpClient weatherHttpClient = new WeatherHttpClient();
-        weatherHttpClient.fetch7DayForecastData("Jaffna", new Handler() {
+        weatherHttpClient.fetch7DayForecastData("Western Province", new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == WeatherHttpClient.FORECAST_FETCH_SUCCESS) {
