@@ -53,8 +53,8 @@
 
     <LinearLayout
         android:id="@+id/layoutTop"
-        android:layout_width="355dp"
-        android:layout_height="619dp"
+        android:layout_width="373dp"
+        android:layout_height="651dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
