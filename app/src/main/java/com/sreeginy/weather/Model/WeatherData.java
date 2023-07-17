@@ -62,7 +62,6 @@ public class WeatherData implements Parcelable {
             WeatherData weatherData = new WeatherData();
 
             weatherData.mNameOfCity = jsonObject.getString("name");
-
             weatherData.condition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
             weatherData.mWeatherType = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
             weatherData.mWeatherIcon = updateWeatherIcon(weatherData.condition);
@@ -82,7 +81,6 @@ public class WeatherData implements Parcelable {
             weatherData.setPressure(jsonObject.getJSONObject("main").getInt("pressure"));
 
             double maxTemperature = jsonObject.getJSONObject("main").getDouble("temp_max");
-
             weatherData.setMaxTemperature(maxTemperature);
 
             double minTemperature = jsonObject.getJSONObject("main").getDouble("temp_min");

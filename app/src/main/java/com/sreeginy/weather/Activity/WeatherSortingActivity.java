@@ -68,7 +68,7 @@ public class WeatherSortingActivity extends AppCompatActivity implements Adapter
 
     private void fetchData() {
         WeatherHttpClient weatherHttpClient = new WeatherHttpClient();
-        weatherHttpClient.fetch7DayForecastData("Western Province", new Handler() {
+        weatherHttpClient.fetch7DayForecastData("Northern Province", new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == WeatherHttpClient.FORECAST_FETCH_SUCCESS) {
@@ -80,28 +80,22 @@ public class WeatherSortingActivity extends AppCompatActivity implements Adapter
             }
         });
     }
-
     private void updateData(ArrayList<ForecastWeatherData> forecastData) {
         forecastDataList.clear();
         forecastDataList.addAll(forecastData);
-
-        // Sort the data based on the date in ascending order
         Collections.sort(forecastDataList, new Comparator<ForecastWeatherData>() {
             @Override
             public int compare(ForecastWeatherData data1, ForecastWeatherData data2) {
                 return data1.getDate().compareTo(data2.getDate());
             }
         });
-
         weatherAdapter.notifyDataSetChanged();
     }
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String selectedOption = parent.getItemAtPosition(position).toString();
         sortData(selectedOption);
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         // Do nothing

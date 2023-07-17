@@ -177,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(MainActivity.this, "Location obtained successfully", Toast.LENGTH_SHORT).show();
@@ -187,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
     private void letsdoSomeNetworking(RequestParams params) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(apiUrl, params, new JsonHttpResponseHandler() {
@@ -200,12 +198,10 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
                 updateUI(weatherData);
             }
         });
     }
-
     public void updateUI(WeatherData weather) {
         mTemperature.setText(weather.getmTemperature() + "°");
         mNameOfCity.setText(weather.getmNameOfCity());

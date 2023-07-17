@@ -26,12 +26,14 @@ import java.util.Set;
 
 public class WeatherHttpClient {
 
-    public static final int FORECAST_FETCH_SUCCESS = 3;
-    public static final int FORECAST_FETCH_FAILURE = 4;
+
     private static final String TAG = WeatherHttpClient.class.getSimpleName();
 
     public static final int WEATHER_FETCH_SUCCESS = 1;
     public static final int WEATHER_FETCH_FAILURE = 2;
+
+    public static final int FORECAST_FETCH_SUCCESS = 3;
+    public static final int FORECAST_FETCH_FAILURE = 4;
 
     private static final String API_KEY = "0834e2dbfe812be60ce5bb46a74aa17c";
     private static final String API_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
@@ -158,7 +160,6 @@ public class WeatherHttpClient {
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray forecastList = jsonObject.getJSONArray("list");
-
             ArrayList<ForecastWeatherData> forecastDataList = new ArrayList<>();
             Set<String> processedDays = new HashSet<>(); // Set to keep track of processed days
 
@@ -167,27 +168,18 @@ public class WeatherHttpClient {
                 String dateTime = forecastObject.getString("dt_txt");
                 String day = getFormattedDay(dateTime);
 
-                // Check if the day has already been processed
                 if (processedDays.contains(day)) {
-                    continue; // Skip processing if the day has already been added
+                    continue;
                 }
-
-                processedDays.add(day); // Add the processed day to the set
-
-
-                String icon = forecastObject.getJSONArray("weather")
-                        .getJSONObject(0).getString("icon");
-                String weatherType = forecastObject.getJSONArray("weather")
-                        .getJSONObject(0).getString("main");
-                double highTemp = forecastObject.getJSONObject("main")
-                        .getDouble("temp_max") - 273.15;
-                double lowTemp = forecastObject.getJSONObject("main")
-                        .getDouble("temp_min") - 273.15;
+                processedDays.add(day);
+                String icon = forecastObject.getJSONArray("weather").getJSONObject(0).getString("icon");
+                String weatherType = forecastObject.getJSONArray("weather").getJSONObject(0).getString("main");
+                double highTemp = forecastObject.getJSONObject("main").getDouble("temp_max") - 273.15;
+                double lowTemp = forecastObject.getJSONObject("main").getDouble("temp_min") - 273.15;
 
                 ForecastWeatherData forecastData = new ForecastWeatherData(day, icon, weatherType, highTemp, lowTemp);
                 forecastDataList.add(forecastData);
             }
-
             return forecastDataList;
         } catch (JSONException e) {
             e.printStackTrace();
